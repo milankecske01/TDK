@@ -1,2 +1,3 @@
 tablazatok/
-fak/
+fak/**/*
+!fak/**/.gitkeep
