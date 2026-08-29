@@ -19,9 +19,9 @@ if sorElsoSzulo == sorMasodikSzulo
     error('Nincs értelme megcserélni testvér taxonokat.');
 end
 
-if elsoId<=levelekDb||masodikId<=levelekDb
-    error('Leveleket nem lehet cserélni.');
-end 
+%if elsoId<=levelekDb||masodikId<=levelekDb
+%    error('Leveleket nem lehet cserélni.');
+%end 
 
 
 P(sorElsoSzulo, oszlopElsoSzulo) = masodikId;

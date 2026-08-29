@@ -10,7 +10,7 @@
 % kapjuk meg, hogy vagy A-t vagy B-t megcseréljük Y-al.
 % Ha X és Y belső taxon, akkor legyenek X gyerekei A és B. Y gyerekei C és
 % D. Cseréljük ki A-t Y-al vagy B-t Y-al vagy C-t X-el vagy D-t X-el. ez
-% három új topológiát ad
+% négy új topológiát ad
 % nekünk. Ha végigértünk az összes belső ponton akkor készen vagyunk.
 
 function szomszedok = legkozelebbiSzomszedok(fa)
@@ -33,15 +33,35 @@ for i = 1:belsoTaxonokDb-1
     end
 
     if  gyerekek(1)>levelekDb&&gyerekek(2)<=levelekDb % első belső, második levél
-            A=pointerek(gyerekek(1),1);
-            B=pointerek(gyerekek(1),2);
+            A=pointerek(gyerekek(1)-levelekDb,1);
+            B=pointerek(gyerekek(1)-levelekDb,2);
             C=gyerekek(2);
-        continue;
+
+            szomszedok{end+1}=phytree(alfaCsere(fa,A,C),levelNevek);
+            szomszedok{end+1}=phytree(alfaCsere(fa,B,C),levelNevek);
+            continue;
     end
     if  gyerekek(1)<=levelekDb&&gyerekek(2)>levelekDb % első levél, második belső
+        A=pointerek(gyerekek(2)-levelekDb,1);
+        B=pointerek(gyerekek(2)-levelekDb,2);
+        C=gyerekek(1);
+
+        szomszedok{end+1}=phytree(alfaCsere(fa,A,C),levelNevek);
+        szomszedok{end+1}=phytree(alfaCsere(fa,B,C),levelNevek);
         continue;
     end
     if  gyerekek(1)>levelekDb&&gyerekek(2)>levelekDb % mindkettő belső
+        A=pointerek(gyerekek(1)-levelekDb,1);
+        B=pointerek(gyerekek(1)-levelekDb,2);
+        C=pointerek(gyerekek(2)-levelekDb,1);
+        D=pointerek(gyerekek(2)-levelekDb,2);
+        X=gyerekek(1);
+        Y=gyerekek(2);
+
+        szomszedok{end+1}=phytree(alfaCsere(fa,A,Y),levelNevek);
+        szomszedok{end+1}=phytree(alfaCsere(fa,B,Y),levelNevek);
+        szomszedok{end+1}=phytree(alfaCsere(fa,C,X),levelNevek);
+        szomszedok{end+1}=phytree(alfaCsere(fa,D,X),levelNevek);
         continue;
     end
 end
