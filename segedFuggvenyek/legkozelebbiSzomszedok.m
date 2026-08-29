@@ -46,16 +46,3 @@ for i = 1:belsoTaxonokDb-1
     end
 end
 end
-% megcseréli egy fának a
-% pointers tömbjében a két megadott id-t és visszaadja egy új tömbben
-function ujPointerek = alfaCsere(pointerek, elsoTaxonId, masodikTaxonId)
-
-[rowA, colA] = find(pointers == nodeA);
-[rowB, colB] = find(pointers == nodeB);
-
-ujPointerek(rowA, colA) = nodeB;
-ujPointerek(rowB, colB) = nodeA;
-
-newTree = phytree(newPointers, levelNevek);
-end
-
