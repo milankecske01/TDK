@@ -25,7 +25,7 @@ function tree = randomFa(tablazat)
         logC(i+1) = gammaln(2*i + 1) - gammaln(i + 1) - gammaln(i + 2);
     end
 
-
+    kevertLevelek = randperm(n + 1);
     levelIdSzamlalo=1;
     belsoIdSzamlalo=2+n;
     %m=belső node-ok száma
@@ -36,7 +36,7 @@ function tree = randomFa(tablazat)
         %levél
         if m == 0
             B = [];
-            gyerekId = levelIdSzamlalo;
+            gyerekId = kevertLevelek(levelIdSzamlalo);
             levelIdSzamlalo=levelIdSzamlalo+1;
             return;
         end
