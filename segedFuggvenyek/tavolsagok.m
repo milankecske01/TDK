@@ -18,6 +18,6 @@ function tavolsagok = tavolsagok(fa,tablazat,tavolsagMetrika)
 
     szuloIdk= szulok(fa);
     for i = 1:taxonokDb-1
-        tavolsagok(i)=pdist2(table2array(tablazat(i,:)),table2array(tablazat(szuloIdk(i),:)),tavolsagMetrika)
+        tavolsagok(i)=pdist2(table2array(tablazat(i,:)),table2array(tablazat(szuloIdk(i),:)),tavolsagMetrika);
     end
 end
