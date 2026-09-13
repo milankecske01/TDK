@@ -1,4 +1,3 @@
-% EZT JELENLEG NEM HASZNÁLOM SEHOL
 %visszaadja egy fa összes elemének a szülőjének az id-ját
 function szuloIdk = szulok(tree)
 
