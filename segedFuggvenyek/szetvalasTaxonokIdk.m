@@ -2,7 +2,7 @@
 % minden sorban 2 id lesz, ez 2 jelleg id-je. a függvény visszaadja, hogy
 % ez a kettő id, melyik id-jű nem levél taxonokban nem egyenlő.
 
-function szetvalasok = szetvalasTaxonokId(fa, tablazat, idk)
+function [szetvalasok,szetvalasokDb] = szetvalasTaxonokId(fa, tablazat, idk)
 levelekDb = get(fa, 'NumLeaves');
 pointerek = get(fa, 'Pointers');
 belsoTaxonokDb = size(pointerek, 1);
@@ -10,6 +10,7 @@ taxonokDb=levelekDb+belsoTaxonokDb;
 potencialisSzetvalasokDb=size(idk,1);
 
 szetvalasok=cell(potencialisSzetvalasokDb,1);
+szetvalasokDb=0;
 
 for i = 1:potencialisSzetvalasokDb
     for j = levelekDb+1:taxonokDb
@@ -17,5 +18,6 @@ for i = 1:potencialisSzetvalasokDb
             continue;
         end
         szetvalasok{i}(end+1)=j;
+        szetvalasokDb=szetvalasokDb+1;
     end
 end

@@ -7,7 +7,7 @@
 %egyelőre autoencoder nélkül, de majd azt is belerakom.
 % minimumValoszinusegJelleghez: a minimum esély, hogy egy jelleg értéke 1
 % legyen
-function [tablazat, fa] = elodAllapotRekonstrukcio(tablazat, fa, minimumValoszinusegJelleghez)
+function tablazat = elodAllapotRekonstrukcio(tablazat, fa, minimumValoszinusegJelleghez)
     levelekDb = get(fa, 'NumLeaves');
     pointerek = get(fa, 'Pointers');
     nevek=get(fa,"NodeNames");

@@ -1,8 +1,9 @@
 classdef fa
     properties
         szerkezet phytree
-        fitchTavolsag double = 0
-        valodiTavolsag double = 0
+        fitchHossz double = 0
+        valodiHossz double = 0
+        szetvalasHossz double = NaN
         tablazat table
     end
     
