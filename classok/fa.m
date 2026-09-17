@@ -3,7 +3,8 @@ classdef fa
         szerkezet phytree
         fitchHossz double = 0
         valodiHossz double = 0
-        szetvalasHossz double = NaN
+        szetvalasHossz double = 0
+        sulyozottHossz double = 0
         tablazat table
     end
     
