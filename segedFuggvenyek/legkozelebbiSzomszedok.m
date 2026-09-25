@@ -19,50 +19,45 @@ levelekDb = get(fa, 'NumLeaves');
 pointerek = get(fa, 'Pointers');
 levelNevek = get(fa, 'LeafNames');
 belsoTaxonokDb = size(pointerek, 1);
-taxonokDb=levelekDb+belsoTaxonokDb;
 szomszedok = {};
 
+SzomSzedokIdeiglenes = cell(belsoTaxonokDb - 1, 1);
 
-%szuloIdk=szulok(fa);
-
-for i = 1:belsoTaxonokDb-1
-
-    gyerekek=pointerek(i,:);
-    if  gyerekek(1)<=levelekDb&&gyerekek(2)<=levelekDb % mindkettő levél
-        continue;
+parfor i = 1:belsoTaxonokDb - 1
+    gyerekek = pointerek(i, :);
+    helyiSzomszedok = {};
+    
+    if gyerekek(1) <= levelekDb && gyerekek(2) <= levelekDb
+        
+    elseif gyerekek(1) > levelekDb && gyerekek(2) <= levelekDb % első belső, második levél
+        A = pointerek(gyerekek(1)-levelekDb, 1);
+        B = pointerek(gyerekek(1)-levelekDb, 2);
+        C = gyerekek(2);
+        helyiSzomszedok{1} = phytree(alfaCsere(fa, A, C), levelNevek);
+        helyiSzomszedok{2} = phytree(alfaCsere(fa, B, C), levelNevek);
+        
+    elseif gyerekek(1) <= levelekDb && gyerekek(2) > levelekDb % első levél, második belső
+        A = pointerek(gyerekek(2)-levelekDb, 1);
+        B = pointerek(gyerekek(2)-levelekDb, 2);
+        C = gyerekek(1);
+        helyiSzomszedok{1} = phytree(alfaCsere(fa, A, C), levelNevek);
+        helyiSzomszedok{2} = phytree(alfaCsere(fa, B, C), levelNevek);
+        
+    elseif gyerekek(1) > levelekDb && gyerekek(2) > levelekDb % mindkettő belső
+        A = pointerek(gyerekek(1)-levelekDb, 1);
+        B = pointerek(gyerekek(1)-levelekDb, 2);
+        C = pointerek(gyerekek(2)-levelekDb, 1);
+        D = pointerek(gyerekek(2)-levelekDb, 2);
+        X = gyerekek(1);
+        Y = gyerekek(2);
+        helyiSzomszedok{1} = phytree(alfaCsere(fa, A, Y), levelNevek);
+        helyiSzomszedok{2} = phytree(alfaCsere(fa, B, Y), levelNevek);
+        helyiSzomszedok{3} = phytree(alfaCsere(fa, C, X), levelNevek);
+        helyiSzomszedok{4} = phytree(alfaCsere(fa, D, X), levelNevek);
     end
-
-    if  gyerekek(1)>levelekDb&&gyerekek(2)<=levelekDb % első belső, második levél
-            A=pointerek(gyerekek(1)-levelekDb,1);
-            B=pointerek(gyerekek(1)-levelekDb,2);
-            C=gyerekek(2);
-
-            szomszedok{end+1}=phytree(alfaCsere(fa,A,C),levelNevek);
-            szomszedok{end+1}=phytree(alfaCsere(fa,B,C),levelNevek);
-            continue;
-    end
-    if  gyerekek(1)<=levelekDb&&gyerekek(2)>levelekDb % első levél, második belső
-        A=pointerek(gyerekek(2)-levelekDb,1);
-        B=pointerek(gyerekek(2)-levelekDb,2);
-        C=gyerekek(1);
-
-        szomszedok{end+1}=phytree(alfaCsere(fa,A,C),levelNevek);
-        szomszedok{end+1}=phytree(alfaCsere(fa,B,C),levelNevek);
-        continue;
-    end
-    if  gyerekek(1)>levelekDb&&gyerekek(2)>levelekDb % mindkettő belső
-        A=pointerek(gyerekek(1)-levelekDb,1);
-        B=pointerek(gyerekek(1)-levelekDb,2);
-        C=pointerek(gyerekek(2)-levelekDb,1);
-        D=pointerek(gyerekek(2)-levelekDb,2);
-        X=gyerekek(1);
-        Y=gyerekek(2);
-
-        szomszedok{end+1}=phytree(alfaCsere(fa,A,Y),levelNevek);
-        szomszedok{end+1}=phytree(alfaCsere(fa,B,Y),levelNevek);
-        szomszedok{end+1}=phytree(alfaCsere(fa,C,X),levelNevek);
-        szomszedok{end+1}=phytree(alfaCsere(fa,D,X),levelNevek);
-        continue;
-    end
+    
+    SzomSzedokIdeiglenes{i} = helyiSzomszedok;
 end
+
+szomszedok = [szomszedok, SzomSzedokIdeiglenes{:}];
 end
