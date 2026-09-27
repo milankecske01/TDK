@@ -1,0 +1,1 @@
+interaktivFa(fak(1),parok);
