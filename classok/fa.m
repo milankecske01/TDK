@@ -5,6 +5,7 @@ classdef fa
         valodiHossz double = 0
         szetvalasHossz double = 0
         sulyozottHossz double = 0
+        AQPontszam double = 0
         tablazat table
     end
     
