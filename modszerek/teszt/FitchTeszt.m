@@ -14,5 +14,5 @@ if ok
 else
     error('Nem választottál változót.');
 end
-B=get(fa,'Pointers');
+B=get(faClass.szerkezet,'Pointers');
 eredmeny=Fitch(B,tablazat);
