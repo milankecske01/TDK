@@ -20,9 +20,11 @@ function pontszam=AQPontszamEgyFara(fa,jellegParok)
             continue;
         end
         taxonokAlfabanDb = taxonokDbAlfaban(os,pointerek,levelekDb);
+        if taxonokAlfabanDb==0 % ha nincs ilyen elem, akkor kihagyjuk a jellegpárt
+            continue;
+        end
         pontszam = pontszam + size(kivalasztottTaxonok,2)/taxonokAlfabanDb;
     end
-    pontszam=pontszam/jellegParokDb;
-
+    pontszam=pontszam/jellegParokDb; % ha valamelyik jellegpár 0 megfelelő taxont talál, akkor a "jellegParokDb"-ből levonjak 1-et?
 end
 
