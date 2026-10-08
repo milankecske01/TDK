@@ -25,6 +25,6 @@ function pontszam=AQPontszamEgyFara(fa,jellegParok)
         end
         pontszam = pontszam + size(kivalasztottTaxonok,2)/taxonokAlfabanDb;
     end
-    pontszam=pontszam/jellegParokDb; % ha valamelyik jellegpár 0 megfelelő taxont talál, akkor a "jellegParokDb"-ből levonjak 1-et?
+    pontszam=pontszam/jellegParokDb;
 end
 
