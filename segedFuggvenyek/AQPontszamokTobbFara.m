@@ -1,3 +1,6 @@
+
+% Több fára kiszámolja az AQ pontszámot, és egy waitBar-t is updatel közben
+% Ha nem jelenik meg semelyik jelleg a fán, akkor -1-et ad vissza
 function fak= AQPontszamokTobbFara(fak,jellegParok,waitTimerHandle,beszedes)
     fakDb=size(fak,2);
     if beszedes

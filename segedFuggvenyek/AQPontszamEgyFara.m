@@ -1,29 +1,30 @@
+% Egy fára kiszámolja az AQ pontszámot
+% Ha nem jelenik meg semelyik jelleg a fán, akkor -1-et ad vissza
 function pontszam=AQPontszamEgyFara(fa,jellegParok)
     jellegParokDb=size(jellegParok,1);
     pontszam=0;
     pointerek = get(fa.szerkezet,"Pointers");
     szuloIdk = szulok(fa.szerkezet);
-    taxonokDb = get(fa.szerkezet,"NumNodes");
     tablazat=table2array(fa.tablazat);
     levelekDb=get(fa.szerkezet,"NumLeaves");
+    if numel(jellegParokDb)==0
+        pontszam=-1;
+        return;
+    end
     for i=1:jellegParokDb
         kivalasztottTaxonok=[];
 
-        for j = 1:taxonokDb
-            if tablazat(j,jellegParok(i,1))==1||tablazat(j,jellegParok(i,2))==1
+        for j = 1:levelekDb
+            if (tablazat(j,jellegParok(i,1))==1||tablazat(j,jellegParok(i,2))==1)
                 kivalasztottTaxonok(end+1)=j;
             end
         end
+        if isempty(kivalasztottTaxonok)
+            continue;
+        end
         os=legkozelebbiKozosOs(kivalasztottTaxonok,szuloIdk);
-
-        if isempty(os)
-            continue;
-        end
-        taxonokAlfabanDb = taxonokDbAlfaban(os,pointerek,levelekDb);
-        if taxonokAlfabanDb==0 % ha nincs ilyen elem, akkor kihagyjuk a jellegpárt
-            continue;
-        end
-        pontszam = pontszam + size(kivalasztottTaxonok,2)/taxonokAlfabanDb;
+        levelekAlfabanDb = levelekDbAlfaban(os,pointerek,levelekDb);
+        pontszam = pontszam + size(kivalasztottTaxonok,2)/levelekAlfabanDb;
     end
     pontszam=pontszam/jellegParokDb;
 end
