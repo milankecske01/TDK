@@ -10,10 +10,15 @@ classdef fa
         RI double = 0
         CI double = 0
         JHI double = 0 % súlyozott holofiletikus index
-        RC double = 0
         tablazat table
     end
     
     methods
+        function homoplaziaIndex = getHomoplaziaIndex(obj)
+            homoplaziaIndex = 1 - obj.CI;
+        end
+        function RC = getRC(obj)
+            RC = obj.CI*obj.RI;
+        end
     end
 end
