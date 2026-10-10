@@ -5,8 +5,8 @@ function CI=CIEgyFara(fa)
     levelekDb=get(fa.szerkezet,"NumLeaves");
     tablazat=fa.tablazat;
 
-    minjellegValtozasokDb = MinJellegValtozasokDb(tablazat, levelekDb);
-    tenylegesJellegValtozasokDb = TenylegesJellegValtozasokSzama(tablazat, pointerek, taxonokDb, levelekDb);
+    minimum = minJellegValtozasokDb(tablazat, levelekDb);
+    tenyleges = TenylegesJellegValtozasokSzama(tablazat, pointerek, taxonokDb, levelekDb);
 
-    CI=minjellegValtozasokDb/tenylegesJellegValtozasokDb;
+    CI=minimum/tenyleges;
 end
