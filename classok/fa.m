@@ -7,7 +7,7 @@ classdef fa
         AQPontszam double = 0
         RI double = 0
         CI double = 0
-        HI double = 0 %holofiletikus index
+        JHI double = 0 % súlyozott holofiletikus index
         RC double = 0
         tablazat table
     end
