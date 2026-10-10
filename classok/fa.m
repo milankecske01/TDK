@@ -1,3 +1,5 @@
+% homoplázia index (HI) nem lesz külön eltárolva, mert a képlete csak (1-CI)
+% a HI rövidítás mindenhol a holofiletikus indexet jelenti.
 classdef fa
     properties
         szerkezet phytree
