@@ -5,12 +5,12 @@
 % kevésbé különbözik a csoport öszes elemének közös ősétől, mint bármely,
 % taxon ami nincs benne a csoportban.
 % (különbözőség, tetszőleges metrika, amit megadunk, gyakorlatban a Sørensen-dice-ot használjuk.)
-function JHI=JHIEgyFara(fa,csoportok,tavolsagMertek)
-    csoportokDb=size(csoportok);
+function JHI=JHIEgyFara(fa,osztalyok,tavolsagMertek)
+    csoportokDb=size(osztalyok);
     JHI=0;
     for i = 1:csoportokDb
-        HI=HIEgyCsoportra(fa,csoportok(i),tavolsagMertek);
-        JHI=JHI+HI;
+        HI=HIEgyCsoportra(fa,osztalyok(i),tavolsagMertek);
+        JHI=JHI+HI*numel(osztalyok(i));
     end
-    JHI=JHI/csoportokDb;
+    JHI=JHI/sum(cellfun(@numel, osztalyok));
 end
