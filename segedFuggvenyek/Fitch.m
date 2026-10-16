@@ -1,6 +1,9 @@
-%Fitch algoritmus, ami meg tudna adni egy fának a hosszát (hány db változás történt)
-%B= a fa szerkezete (get(fa,"Pointers"))
-%tablazat= a táblázat, amiben a jellegek vannak
+% Fitch algoritmus, ami meg tudna adni egy fának a hosszát (hány db változás történt)
+% B= a fa szerkezete (get(fa,"Pointers"))
+% tablazat= a táblázat, amiben a jellegek vannak
+% Ez csak olyan B
+% mátrixokon működik, amelyek megfelelnek a phytree objektum elvásárainak 
+% (taxon id mindeg előbb van mint a szülője.)
 function hosszusag = Fitch(B,tablazat)
 
 data = table2array(tablazat);
