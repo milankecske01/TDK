@@ -6,12 +6,11 @@
 function ujPointerek = alfaCsere(fa, elsoId, masodikId)
 
 P = get(fa, "Pointers");
-levelekDb = get(fa, "NumLeaves");
 
 csereParok = [elsoId, masodikId];
 
-rendezetlenP = pointerCsereTobb(P, csereParok);
+rendezetlenP = pointerCserek(P, csereParok);
 
-ujPointerek = faRendberako(rendezetlenP, levelekDb);
+ujPointerek = faRendbeRako(rendezetlenP);
 
 end

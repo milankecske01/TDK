@@ -1,0 +1,1 @@
+hosszusag=fitchRendezetlenMatrixxal(get(fa.szerkezet,"Pointers"),fa.tablazat,113);
