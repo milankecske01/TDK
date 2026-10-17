@@ -16,7 +16,6 @@ for i = 1:size(csereParok, 1)
         continue;
     end
 
-    % Csere végrehajtása
     P(sorElso, oszlopElso) = masodikId;
     P(sorMasodik, oszlopMasodik) = elsoId;
 end

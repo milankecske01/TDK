@@ -5,37 +5,50 @@
 % addig amíg lokális optimumban vagyunk.
 
 
-% SPR-t hajt végre egy fán,
-% amíg nem talál egy jobb fát, vagy minden szomszéd fel lett kutatva.
+% SPR-t hajt végre egy fán, amíg nem talál egy jobb fát.
 % Amint talál egy jobbat, egyből átállítjuk a fát és keresünk tovább.
+% Fontos, hogy ezt elődállapot rekonstrukció előtt csináljuk.
 function fa = SPREgyFara(fa)
+    tablazat = fa.tablazat;
+    levelekDb = get(fa.szerkezet, "NumLeaves");
+    levelNevek = get(fa.szerkezet, "LeafNames"); 
     
     lokalisOptimum = false;
+    faHossz = fa.fitchHossz;
     
     while ~lokalisOptimum
         
         lokalisOptimum = true;
         
-        vaghatoTaxonok = vagHatoTaxonokFara(fa);
+        taxonokDb = get(fa.szerkezet, "NumNodes");
+        pointerek = get(fa.szerkezet, "Pointers");
+        
+        vaghatoTaxonok = 1:taxonokDb-1; 
+        osszesVisszakotesiHely = 1:taxonokDb; 
         
         for i = 1:length(vaghatoTaxonok)
-            % élek helyett a taxont választjuk ki, ez azt jelenti, hogy a
-            % taxon és őse közötti élt vágjuk el ilyenkor.
-            jelenlegiEl = vaghatoTaxonok(i);
+            levagottEl = vaghatoTaxonok(i);
             
-            [maradekFa, levagottReszfa] = reszFaLevagas(fa, jelenlegiEl);
-            
-            visszakotesiPontok = visszaKotesiPontokFara(maradekFa);
+            visszakotesiPontok = setdiff(osszesVisszakotesiHely, kivalasztottTaxonEsGyerekei(pointerek, levagottEl));
             
             for j = 1:length(visszakotesiPontok)
-                celPont = visszakotesiPontok(j);
+                visszakotesiPont = visszakotesiPontok(j);
                 
-                ujFa = reszFaVisszakotes(maradekFa, levagottReszfa, celPont);
+                [ujMatrix, gyoker] = SPRPointerCsere(pointerek, levagottEl, visszakotesiPont, levelekDb);
                 
-                ujFaHossz=Fitch(ujFa,fa.tablazat)
-
-                if faJobb(ujFa, fa)
-                    fa = ujFa;
+                if isempty(gyoker)
+                    gyoker = taxonokDb;
+                end
+                
+                ujFaHossz = fitchRendezetlenMatrixxal(ujMatrix, tablazat, gyoker);
+                
+                if ujFaHossz < faHossz
+                    ujRendezettMatrix = faRendbeRako(ujMatrix, levelekDb);
+                    fa.szerkezet = phytree(ujRendezettMatrix, levelNevek);
+                    
+                    fa.fitchHossz = ujFaHossz;
+                    faHossz = ujFaHossz;
+                    
                     lokalisOptimum = false;
                     break;
                 end
