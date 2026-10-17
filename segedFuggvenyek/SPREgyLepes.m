@@ -33,7 +33,7 @@ function [fa, talaltJobbat, helyiPontszamok, helyiPontszamCsokkenesek] = SPREgyL
             if ujFaHossz < faHossz
                 csokkenes = faHossz - ujFaHossz;
                 
-                ujRendezettMatrix = faRendbeRako(ujMatrix, levelekDb);
+                ujRendezettMatrix = faRendbeRako(ujMatrix);
                 fa.szerkezet = phytree(ujRendezettMatrix, levelNevek);
                 fa.fitchHossz = ujFaHossz;
                 
