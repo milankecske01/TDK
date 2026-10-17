@@ -1,5 +1,6 @@
 % visszadja egy taxon összes levél gyerekét (indexeket) egy fában.
 function levelIdk = levelekAlfaban(pointerek, taxonId)
+    levelekDb=size(pointerek,1)+1;
 
     levelIdk = [];
     sor = taxonId;

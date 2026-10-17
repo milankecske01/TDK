@@ -6,7 +6,7 @@ function RI=RIEgyFara(fa)
     tablazat=fa.tablazat;
     
     minimum = minJellegValtozasokDb(tablazat, levelekDb);
-    tenyleges = TenylegesJellegValtozasokSzama(tablazat, pointerek, taxonokDb, levelekDb);
+    tenyleges = tenylegesJellegValtozasokDb(tablazat, pointerek, taxonokDb);
     maximum=maxJellegValtozasokDb(tablazat,levelekDb);
     
     RI=(maximum-tenyleges)/(maximum-minimum);

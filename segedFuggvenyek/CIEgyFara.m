@@ -6,7 +6,7 @@ function CI=CIEgyFara(fa)
     tablazat=fa.tablazat;
 
     minimum = minJellegValtozasokDb(tablazat, levelekDb);
-    tenyleges = TenylegesJellegValtozasokSzama(tablazat, pointerek, taxonokDb, levelekDb);
+    tenyleges = tenylegesJellegValtozasokDb(tablazat, pointerek, taxonokDb);
 
     CI=minimum/tenyleges;
 end

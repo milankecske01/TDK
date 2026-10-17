@@ -1,7 +1,8 @@
 % Kiszámolja a tényleges jellegváltozások számát az adott fán (Fitch-hossz)
-function tenylegesJellegValtozasokDb = TenylegesJellegValtozasokSzama(tablazat, pointerek, taxonokDb)
+function db = tenylegesJellegValtozasokDb(tablazat, pointerek, taxonokDb)
 jellegekDb = size(tablazat, 2);
-tenylegesJellegValtozasokDb = 0;
+tablazat=table2array(tablazat);
+db = 0;
 levelekDb=(taxonokDb+1)/2;
 for i = 1:jellegekDb
     sor = [];
@@ -12,7 +13,7 @@ for i = 1:jellegekDb
         gyerekek = pointerek(jelenlegiTaxonId - levelekDb, :);
         for k = 1:2
             if tablazat(jelenlegiTaxonId, i) ~= tablazat(gyerekek(k), i)
-                tenylegesJellegValtozasokDb = tenylegesJellegValtozasokDb + 1;
+                db = db + 1;
             end
             if gyerekek(k) > levelekDb
                 sor(end+1) = gyerekek(k);

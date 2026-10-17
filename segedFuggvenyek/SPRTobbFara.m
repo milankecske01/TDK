@@ -6,7 +6,7 @@
 
 
 % SPR-t hív meg több fán, és a pontszámokat és csökkenéseket elmenti, ha akarjuk
-function [fak, Pontszamok, PontszamokCsokkenes] = SPRTobbFara(fak, beszedes, waitTimerHandle, pontszamokMemorizalas, pontszamokCsokkenesMemorizalas)
+function [fak, Pontszamok, PontszamokCsokkenes] = SPRTobbFara(fak, beszedes, waitTimerHandle, pontszamokMemorizalas, pontszamokCsokkenesMemorizalas, holofiletikusOsztalyok, minimumValoszinusegJelleghez, SPRMaxProbalkozasok)
     
     fakDb = length(fak);
     
@@ -23,7 +23,7 @@ function [fak, Pontszamok, PontszamokCsokkenes] = SPRTobbFara(fak, beszedes, wai
     
     parfor i = 1:fakDb
         [optimalizaltFa, helyiPontszamok, helyiPontszamCsokkenesek] = ...
-            SPREgyFara(fak(i), pontszamokMemorizalas, pontszamokCsokkenesMemorizalas);
+            SPREgyFara(fak(i), pontszamokMemorizalas, pontszamokCsokkenesMemorizalas, holofiletikusOsztalyok, minimumValoszinusegJelleghez, SPRMaxProbalkozasok);
         
         fak(i) = optimalizaltFa;
         

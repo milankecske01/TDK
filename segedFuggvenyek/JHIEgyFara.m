@@ -6,11 +6,11 @@
 % taxon ami nincs benne a csoportban.
 % (különbözőség, tetszőleges metrika, amit megadunk, gyakorlatban a Sørensen-dice-ot használjuk.)
 function JHI=JHIEgyFara(fa,osztalyok)
-    csoportokDb=size(osztalyok);
+    csoportokDb=length(osztalyok);
     JHI=0;
     for i = 1:csoportokDb
-        HI=HIEgyCsoportra(fa,osztalyok(i));
-        JHI=JHI+HI*numel(osztalyok(i));
+        HI=HIEgyCsoportra(fa,osztalyok{i});
+        JHI=JHI+HI*numel(osztalyok{i});
     end
     JHI=JHI/sum(cellfun(@numel, osztalyok));
 end
