@@ -2,9 +2,10 @@
 % egy HI kiszámításához (egy osztályhoz) a következő az algoritmus:
 % keressünk olyan diszjunkt holofiletikus csoportokat, ahol az összes levél
 % taxon, tagja az adott osztálynak, és mindegyik levél taxon a csoportban,
-% kevésbé különbözik a csoport öszes elemének közös ősétől, mint bármely,
-% taxon ami nincs benne a csoportban.
-% (különbözőség, tetszőleges metrika, amit megadunk, gyakorlatban a Sørensen-dice-ot használjuk.)
+% majd nézzük, meg hogy
+% csoportonként,mekkora részét tudjuk lefedni a csoportnak,
+% ilyen holofiletikus csoportokkal, majd adjuk ezeket a pontokat össze
+% súlyozva
 function JHI=JHIEgyFara(fa,osztalyok)
     csoportokDb=length(osztalyok);
     JHI=0;
