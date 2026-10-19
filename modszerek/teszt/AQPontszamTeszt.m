@@ -1,2 +1,2 @@
 parok=parok;
-pontszam=AQPontszamEgyFara(faClass,parok);
+pontszam=AQPontszamEgyFara(temp,parok);
