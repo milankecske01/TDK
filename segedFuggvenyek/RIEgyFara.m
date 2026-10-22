@@ -1,13 +1,17 @@
-% kap egy fát és visszaadja a megtartási indexét
-function RI=RIEgyFara(fa)
-    taxonokDb=get(fa.szerkezet,"NumNodes");
-    pointerek=get(fa.szerkezet,"Pointers");
-    levelekDb=get(fa.szerkezet,"NumLeaves");
-    tablazat=fa.tablazat;
-    
+% Kap egy fát, és visszaadja a megtartási indexét (RI)
+function RI = RIEgyFara(fa)
+
+    levelekDb = get(fa.szerkezet, "NumLeaves");
+    tablazat = fa.tablazat;
+
     minimum = minJellegValtozasokDb(tablazat, levelekDb);
-    tenyleges = tenylegesJellegValtozasokDb(tablazat, pointerek, taxonokDb);
-    maximum=maxJellegValtozasokDb(tablazat,levelekDb);
-    
-    RI=(maximum-tenyleges)/(maximum-minimum);
+    tenyleges = fa.fitchHossz;
+    maximum = maxJellegValtozasokDb(tablazat, levelekDb);
+
+    if maximum - minimum == 0
+        RI = NaN;
+        return;
+    end
+
+    RI = (maximum - tenyleges) / (maximum - minimum);
 end

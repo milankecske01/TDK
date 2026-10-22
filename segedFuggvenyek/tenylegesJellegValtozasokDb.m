@@ -1,3 +1,4 @@
+%Egyelőre nem használt, mert az RI-ben és CI-ben a Fitch hossz kell.
 % Kiszámolja a tényleges jellegváltozások számát az adott fán (Fitch-hossz)
 function db = tenylegesJellegValtozasokDb(tablazat, pointerek, taxonokDb)
 jellegekDb = size(tablazat, 2);

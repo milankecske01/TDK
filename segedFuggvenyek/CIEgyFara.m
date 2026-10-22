@@ -1,12 +1,16 @@
-% kap egy fát és visszaadja a konzisztencia indexét (CI)
-function CI=CIEgyFara(fa)
-    taxonokDb=get(fa.szerkezet,"NumNodes");
-    pointerek=get(fa.szerkezet,"Pointers");
-    levelekDb=get(fa.szerkezet,"NumLeaves");
-    tablazat=fa.tablazat;
+% Kap egy fát, és visszaadja a konzisztenciaindexét (CI)
+function CI = CIEgyFara(fa)
+
+    levelekDb = get(fa.szerkezet, "NumLeaves");
+    tablazat = fa.tablazat;
 
     minimum = minJellegValtozasokDb(tablazat, levelekDb);
-    tenyleges = tenylegesJellegValtozasokDb(tablazat, pointerek, taxonokDb);
+    tenyleges = fa.fitchHossz;
 
-    CI=minimum/tenyleges;
+    if tenyleges == 0
+        CI = NaN;
+        return;
+    end
+
+    CI = minimum / tenyleges;
 end
