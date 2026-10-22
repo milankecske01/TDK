@@ -1,4 +1,3 @@
-
 % megkapja egy fának a pointers mátrixát, majd egy megadott id-jű taxont
 % és összes gyerekét visszaadja.
 function taxonok = kivalasztottTaxonEsGyerekei(P, taxonId)

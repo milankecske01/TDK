@@ -2,23 +2,23 @@ function [ujPointerek, ujGyoker] = TBRPointerCsere(pointers, szuloIdk, vagasTaxo
     
     taxonokDb = 2 * levelekDb - 1;
     
-    gyerekIdk = zeros(taxonokDb, 2);
-    gyerekIdk((levelekDb+1):taxonokDb, :) = pointers; 
+    gyerek = zeros(taxonokDb, 2);
+    gyerek((levelekDb+1):taxonokDb, :) = pointers; 
 
     %részfa levágás
     vagasTaxonSzulo = szuloIdk(vagasTaxon);
-    if gyerekIdk(vagasTaxonSzulo, 1) == vagasTaxon
-        vagasTaxonTestver = gyerekIdk(vagasTaxonSzulo, 2);
+    if gyerek(vagasTaxonSzulo, 1) == vagasTaxon
+        vagasTaxonTestver = gyerek(vagasTaxonSzulo, 2);
     else
-        vagasTaxonTestver = gyerekIdk(vagasTaxonSzulo, 1);
+        vagasTaxonTestver = gyerek(vagasTaxonSzulo, 1);
     end
     NagySzulo = szuloIdk(vagasTaxonSzulo);
     
     if NagySzulo ~= 0
-        if gyerekIdk(NagySzulo, 1) == vagasTaxonSzulo
-            gyerekIdk(NagySzulo, 1) = vagasTaxonTestver;
+        if gyerek(NagySzulo, 1) == vagasTaxonSzulo
+            gyerek(NagySzulo, 1) = vagasTaxonTestver;
         else
-            gyerekIdk(NagySzulo, 2) = vagasTaxonTestver;
+            gyerek(NagySzulo, 2) = vagasTaxonTestver;
         end
         szuloIdk(vagasTaxonTestver) = NagySzulo;
     else
@@ -40,10 +40,10 @@ function [ujPointerek, ujGyoker] = TBRPointerCsere(pointers, szuloIdk, vagasTaxo
             gyerekUton = ut(end-1);
         end
         
-        if gyerekIdk(vagasTaxon, 1) == gyerekUton
-            masikGyerek = gyerekIdk(vagasTaxon, 2);
+        if gyerek(vagasTaxon, 1) == gyerekUton
+            masikGyerek = gyerek(vagasTaxon, 2);
         else
-            masikGyerek = gyerekIdk(vagasTaxon, 1);
+            masikGyerek = gyerek(vagasTaxon, 1);
         end
         
         elozoGyerek = UjraGyokerezesTaxon;
@@ -51,16 +51,17 @@ function [ujPointerek, ujGyoker] = TBRPointerCsere(pointers, szuloIdk, vagasTaxo
             jelenlegiTaxon = ut(i);
             szuloTaxon = ut(i+1);
             
+        if gyerek(jelenlegiTaxon, 1) == elozoGyerek
             uresHely = 1;
-            if gyerekIdk(jelenlegiTaxon, 1) == elozoGyerek
-                uresHely = 2;
-            end
+        else
+            uresHely = 2;
+        end
             
             if szuloTaxon == vagasTaxon
-                gyerekIdk(jelenlegiTaxon, uresHely) = masikGyerek;
+                gyerek(jelenlegiTaxon, uresHely) = masikGyerek;
                 szuloIdk(masikGyerek) = jelenlegiTaxon;
             else
-                gyerekIdk(jelenlegiTaxon, uresHely) = szuloTaxon;
+                gyerek(jelenlegiTaxon, uresHely) = szuloTaxon;
                 szuloIdk(szuloTaxon) = jelenlegiTaxon;
             end
             elozoGyerek = jelenlegiTaxon;
@@ -68,12 +69,12 @@ function [ujPointerek, ujGyoker] = TBRPointerCsere(pointers, szuloIdk, vagasTaxo
         
         ujGyoker = vagasTaxon; 
         if length(ut) == 1
-            gyerekIdk(ujGyoker, 1) = UjraGyokerezesTaxon;
-            gyerekIdk(ujGyoker, 2) = masikGyerek;
+            gyerek(ujGyoker, 1) = UjraGyokerezesTaxon;
+            gyerek(ujGyoker, 2) = masikGyerek;
             szuloIdk(masikGyerek) = ujGyoker;
         else
-            gyerekIdk(ujGyoker, 1) = UjraGyokerezesTaxon;
-            gyerekIdk(ujGyoker, 2) = ut(1);
+            gyerek(ujGyoker, 1) = UjraGyokerezesTaxon;
+            gyerek(ujGyoker, 2) = ut(1);
             szuloIdk(ut(1)) = ujGyoker;
         end
         szuloIdk(UjraGyokerezesTaxon) = ujGyoker;
@@ -86,22 +87,22 @@ function [ujPointerek, ujGyoker] = TBRPointerCsere(pointers, szuloIdk, vagasTaxo
     visszaCsatlakozasSzulo = szuloIdk(VisszaIllesztesTaxon);
     
     if visszaCsatlakozasSzulo ~= 0
-        if gyerekIdk(visszaCsatlakozasSzulo, 1) == VisszaIllesztesTaxon
-            gyerekIdk(visszaCsatlakozasSzulo, 1) = vagasTaxonSzulo;
+        if gyerek(visszaCsatlakozasSzulo, 1) == VisszaIllesztesTaxon
+            gyerek(visszaCsatlakozasSzulo, 1) = vagasTaxonSzulo;
         else
-            gyerekIdk(visszaCsatlakozasSzulo, 2) = vagasTaxonSzulo;
+            gyerek(visszaCsatlakozasSzulo, 2) = vagasTaxonSzulo;
         end
         szuloIdk(vagasTaxonSzulo) = visszaCsatlakozasSzulo;
     else
         szuloIdk(vagasTaxonSzulo) = 0;
     end
     
-    gyerekIdk(vagasTaxonSzulo, 1) = VisszaIllesztesTaxon;
-    gyerekIdk(vagasTaxonSzulo, 2) = tenylegesAlfaGyoker;
+    gyerek(vagasTaxonSzulo, 1) = VisszaIllesztesTaxon;
+    gyerek(vagasTaxonSzulo, 2) = tenylegesAlfaGyoker;
     szuloIdk(VisszaIllesztesTaxon) = vagasTaxonSzulo;
     szuloIdk(tenylegesAlfaGyoker) = vagasTaxonSzulo;
     
-    ujPointerek = gyerekIdk((levelekDb+1):end, :);
+    ujPointerek = gyerek((levelekDb+1):end, :);
     
     ujGyoker = find(szuloIdk == 0); 
 end

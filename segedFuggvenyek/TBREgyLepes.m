@@ -22,18 +22,18 @@ function [fa, talaltJobbat, helyiPontszamok, helyiPontszamCsokkenesek] = TBREgyL
     for i = 1:length(kevertVagasiIndexek)
         levagottEl = vaghatoTaxonok(kevertVagasiIndexek(i));
         
-        reszfaCsomopontok = kivalasztottTaxonEsGyerekei(pointerek, levagottEl);
+        levagottFaTaxonok = kivalasztottTaxonEsGyerekei(pointerek, levagottEl);
         
         lebegoszulo = eredetiSzulok(levagottEl);
         
         gyerekek = pointerek(lebegoszulo - levelekDb, :);
         if gyerekek(1) == levagottEl
-            testver = gyerekek(2);
+            levagottElTestver = gyerekek(2);
         else
-            testver = gyerekek(1);
+            levagottElTestver = gyerekek(1);
         end
         
-        tiltottHelyek = [reszfaCsomopontok(:); lebegoszulo; testver];
+        tiltottHelyek = [levagottFaTaxonok(:); lebegoszulo; levagottElTestver];
         visszakotesiPontok = setdiff(osszesVisszakotesiHely, tiltottHelyek);
         
         kevertVisszakotesiIndexek = randperm(length(visszakotesiPontok));
@@ -41,9 +41,9 @@ function [fa, talaltJobbat, helyiPontszamok, helyiPontszamCsokkenesek] = TBREgyL
         for j = 1:length(kevertVisszakotesiIndexek)
             visszakotesiPont = visszakotesiPontok(kevertVisszakotesiIndexek(j));
             
-            kevertUjragyokereztetesiIndexek = randperm(length(reszfaCsomopontok));
+            kevertUjragyokereztetesiIndexek = randperm(length(levagottFaTaxonok));
             for k = 1:length(kevertUjragyokereztetesiIndexek)
-                ujragyokereztetesiPont = reszfaCsomopontok(kevertUjragyokereztetesiIndexek(k));
+                ujragyokereztetesiPont = levagottFaTaxonok(kevertUjragyokereztetesiIndexek(k));
                 
                 [ujMatrix, gyoker] = TBRPointerCsere(pointerek, eredetiSzulok, levagottEl, visszakotesiPont, ujragyokereztetesiPont, levelekDb);
                 
