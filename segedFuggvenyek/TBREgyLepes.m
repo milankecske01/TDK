@@ -56,7 +56,7 @@ function [fa, talaltJobbat, helyiPontszamok, helyiPontszamCsokkenesek] = TBREgyL
                 
                 if ujFaHossz < faHossz
                     csokkenes = faHossz - ujFaHossz;
-                    fprintf("Jobb fa találva (TBR), hossz: %d\n", ujFaHossz);
+                    %fprintf("Jobb fa találva (TBR), hossz: %d\n", ujFaHossz);
                     
                     ujRendezettMatrix = faRendbeRako(ujMatrix);
                     fa.szerkezet = phytree(ujRendezettMatrix, levelNevek);
