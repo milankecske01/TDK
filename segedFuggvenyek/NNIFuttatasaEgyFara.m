@@ -1,9 +1,9 @@
-function [jelenlegiFa, helyiNNIPontszamok, helyiNNIPontszamCsokkenesek] = NNIFuttatasaEgyFara(jelenlegiFa, tablazat, NNIPontszamokMemorizalas, NNIPontszamokCsokkenesMemorizalas)
+function [jelenlegiFa, helyiNNIPontszamok, helyiNNIPontszamCsokkenesek] = NNIFuttatasaEgyFara(jelenlegiFa, tablazat, pontszamokMemorizalas, pontszamokCsokkenesMemorizalas, holofiletikusOsztalyok, minimumValoszinusegJelleghez)
     
     helyiNNIPontszamok = {};
     helyiNNIPontszamCsokkenesek = [];
     
-    if NNIPontszamokMemorizalas
+    if pontszamokMemorizalas
         helyiNNIPontszamok = {jelenlegiFa}; 
     end
     
@@ -12,7 +12,6 @@ function [jelenlegiFa, helyiNNIPontszamok, helyiNNIPontszamCsokkenesek] = NNIFut
     while ~lokalisOptimumMegtalalva
         [jelenlegiFa, helyiNNIPontszamCsokkenesek, helyiNNIPontszamok, lokalisOptimumMegtalalva] = ...
             NNIEgyLepes(jelenlegiFa, tablazat, helyiNNIPontszamCsokkenesek, helyiNNIPontszamok, ...
-            NNIPontszamokCsokkenesMemorizalas, NNIPontszamokMemorizalas);
+            pontszamokCsokkenesMemorizalas, pontszamokMemorizalas, holofiletikusOsztalyok, minimumValoszinusegJelleghez);
     end
-
 end

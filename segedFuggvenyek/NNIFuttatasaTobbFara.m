@@ -1,5 +1,4 @@
-function [fak, NNIPontszamok, NNIPontszamokCsokkenes] = NNIFuttatasaTobbFara(fak, tablazat, fakDb, beszedes, waitTimerHandle, NNIPontszamokMemorizalas, NNIPontszamokCsokkenesMemorizalas)
-
+function [fak, NNIPontszamok, NNIPontszamokCsokkenes] = NNIFuttatasaTobbFara(fak, tablazat, fakDb, beszedes, waitTimerHandle, pontszamokMemorizalas, pontszamokCsokkenesMemorizalas, holofiletikusOsztalyok, minimumValoszinusegJelleghez)
     if beszedes
         set(waitTimerHandle, 'Name', "NNI futtatása");
         waitbar(0, waitTimerHandle, sprintf("0/%d", fakDb));
@@ -13,14 +12,14 @@ function [fak, NNIPontszamok, NNIPontszamokCsokkenes] = NNIFuttatasaTobbFara(fak
     
     parfor i = 1:fakDb
         [optimalizaltFa, helyiNNIPontszamok, helyiNNIPontszamCsokkenesek] = ...
-            NNIFuttatasaEgyFara(fak(i), tablazat, NNIPontszamokMemorizalas, NNIPontszamokCsokkenesMemorizalas);
+            NNIFuttatasaEgyFara(fak(i), tablazat, pontszamokMemorizalas, pontszamokCsokkenesMemorizalas, holofiletikusOsztalyok, minimumValoszinusegJelleghez);
     
         fak(i) = optimalizaltFa;
     
-        if NNIPontszamokMemorizalas
+        if pontszamokMemorizalas
             NNIPontszamok{i} = helyiNNIPontszamok;
         end
-        if NNIPontszamokCsokkenesMemorizalas
+        if pontszamokCsokkenesMemorizalas
             NNIPontszamokCsokkenes{i} = helyiNNIPontszamCsokkenesek;
         end
     
@@ -29,7 +28,7 @@ function [fak, NNIPontszamok, NNIPontszamokCsokkenes] = NNIFuttatasaTobbFara(fak
         end
     end
     
-        if beszedes
-            clear waitBarUpdate;
-        end
+    if beszedes
+        clear waitBarUpdate;
+    end
 end
