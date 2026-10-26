@@ -8,8 +8,9 @@
 % súlyozva
 function JHI=JHIEgyFara(fa,osztalyok)
     osztalyokDb=length(osztalyok);
-    if osztalyokDb==0
+    if osztalyokDb==0 || sum(cellfun(@numel, osztalyok)) == 0
         JHI=-1;
+        warning("JHI egy fára nem volt értelmezhető.")
         return;
     end
     JHI=0;

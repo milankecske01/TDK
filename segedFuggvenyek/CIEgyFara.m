@@ -8,7 +8,8 @@ function CI = CIEgyFara(fa)
     tenyleges = fa.fitchHossz;
 
     if tenyleges == 0
-        CI = NaN;
+        CI = -1;
+        warning("CI egy fára nem volt értelmezhető.")
         return;
     end
 

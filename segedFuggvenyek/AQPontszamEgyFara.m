@@ -9,6 +9,7 @@ function pontszam=AQPontszamEgyFara(fa,jellegParok)
     levelekDb=get(fa.szerkezet,"NumLeaves");
     if numel(jellegParokDb)==0
         pontszam=-1;
+        warning("AQ egy fára nem volt értelmezhető.")
         return;
     end
     for i=1:jellegParokDb

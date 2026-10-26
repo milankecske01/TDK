@@ -4,6 +4,12 @@ function HI=HIEgyCsoportra(fa,osztaly)
     taxonokDb=get(fa.szerkezet,"NumNodes");
     pointerek=get(fa.szerkezet,"Pointers");
     levelekDb=get(fa.szerkezet,"NumLeaves");
+    if numel(osztaly)==0
+        HI=0;
+        return;
+    else
+        
+    end
     for i = taxonokDb:-1:(levelekDb + 1)
         levelGyerekek=levelekAlfaban(pointerek,i);
         if numel(intersect(osztaly,levelGyerekek))~=numel(levelGyerekek) %nem csoportba tartozó levél van a csoportban
