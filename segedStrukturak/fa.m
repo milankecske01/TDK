@@ -3,13 +3,13 @@
 classdef fa
     properties
         szerkezet phytree
-        fitchHossz double = 0
+        fitchHossz double = -1
         valodiHossz double = 0
         szetvalasHossz double = 0
-        AQPontszam double = 0
-        RI double = 0
-        CI double = 0
-        JHI double = 0 % súlyozott holofiletikus index
+        AQPontszam double = -1
+        RI double = -1
+        CI double = -1
+        JHI double = -1 % súlyozott holofiletikus index
         tablazat table
     end
     

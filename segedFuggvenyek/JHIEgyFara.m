@@ -7,9 +7,13 @@
 % ilyen holofiletikus csoportokkal, majd adjuk ezeket a pontokat össze
 % súlyozva
 function JHI=JHIEgyFara(fa,osztalyok)
-    csoportokDb=length(osztalyok);
+    osztalyokDb=length(osztalyok);
+    if osztalyokDb==0
+        JHI=-1;
+        return;
+    end
     JHI=0;
-    for i = 1:csoportokDb
+    for i = 1:osztalyokDb
         HI=HIEgyCsoportra(fa,osztalyok{i});
         JHI=JHI+HI*numel(osztalyok{i});
     end

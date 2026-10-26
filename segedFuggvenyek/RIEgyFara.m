@@ -9,7 +9,7 @@ function RI = RIEgyFara(fa)
     maximum = maxJellegValtozasokDb(tablazat, levelekDb);
 
     if maximum - minimum == 0
-        RI = NaN;
+        RI = -1;
         return;
     end
 
