@@ -1,6 +1,6 @@
 plot(fa.szerkezet);
 
-azonosito="τ4";
+azonosito="τ18";
 AzonositoSzoveg=sprintf("Azonosito - %s",azonosito);
 CimSzoveg=sprintf("%s fa szerkezete",azonosito);
 CISzoveg = sprintf('CI - %.4f', fa.CI);
