@@ -1,6 +1,8 @@
-plot(fa.szerkezet);
 
 azonosito="τ21";
+
+lot(fa.szerkezet);
+
 AzonositoSzoveg=sprintf("Azonosito - %s",azonosito);
 CimSzoveg=sprintf("%s fa szerkezete",azonosito);
 CISzoveg = sprintf('CI - %.4f', fa.CI);
@@ -33,4 +35,4 @@ lgd.TextColor = "black";
 lgd.Location = 'northwest';
 legend('boxoff');
 
-clearvars -except fa
+clearvars -except osztalyok fak
