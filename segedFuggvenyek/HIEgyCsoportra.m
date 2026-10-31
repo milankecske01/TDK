@@ -7,8 +7,6 @@ function HI=HIEgyCsoportra(fa,osztaly)
     if numel(osztaly)==0
         HI=0;
         return;
-    else
-        
     end
     for i = taxonokDb:-1:(levelekDb + 1)
         levelGyerekek=levelekAlfaban(pointerek,i);
