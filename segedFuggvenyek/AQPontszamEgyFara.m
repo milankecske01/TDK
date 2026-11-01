@@ -7,19 +7,15 @@ function pontszam=AQPontszamEgyFara(fa,jellegParok)
     szuloIdk = szulok(fa.szerkezet);
     tablazat=table2array(fa.tablazat);
     levelekDb=get(fa.szerkezet,"NumLeaves");
-    if numel(jellegParokDb)==0
+    if jellegParokDb==0
         pontszam=-1;
         warning("AQ egy fára nem volt értelmezhető.")
         return;
     end
     for i=1:jellegParokDb
-        kivalasztottTaxonok=[];
 
-        for j = 1:levelekDb
-            if (tablazat(j,jellegParok(i,1))==1||tablazat(j,jellegParok(i,2))==1)
-                kivalasztottTaxonok(end+1)=j;
-            end
-        end
+        kivalasztottTaxonok = find(tablazat(1:levelekDb, jellegParok(i,1)) == 1 | tablazat(1:levelekDb, jellegParok(i,2)) == 1)';
+        
         if isempty(kivalasztottTaxonok)
             continue;
         end
