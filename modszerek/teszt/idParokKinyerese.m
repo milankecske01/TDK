@@ -1,1 +1,0 @@
-parok=idParokKinyereseMatrixbol(relationships);
